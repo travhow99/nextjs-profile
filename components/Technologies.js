@@ -14,68 +14,61 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews)
 
 const images = [
   {
-    label: 'San Francisco – Oakland Bay Bridge, United States',
+    label: 'JavaScript',
     imgPath:
-      'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1024px-Unofficial_JavaScript_logo_2.svg.png',
   },
   {
-    label: 'Bird',
-    imgPath:
-      'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
+    label: 'React',
+    imgPath: 'https://reactjs.org/logo-og.png',
   },
   {
-    label: 'Bali, Indonesia',
+    label: 'NodeJS',
     imgPath:
-      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/1200px-Node.js_logo.svg.png',
   },
   {
-    label: 'Goč, Serbia',
+    label: 'PHP',
     imgPath:
-      'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/PHP-logo.svg/640px-PHP-logo.svg.png',
   },
   {
-    label: 'San Francisco – Oakland Bay Bridge, United States',
+    label: 'MySQL',
     imgPath:
-      'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
+      'https://d1.awsstatic.com/asset-repository/products/amazon-rds/1024px-MySQL.ff87215b43fd7292af172e2a5d9b844217262571.png',
   },
   {
-    label: 'Bird',
+    label: 'Next JS',
     imgPath:
-      'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Nextjs-logo.svg/800px-Nextjs-logo.svg.png',
   },
   {
-    label: 'Bali, Indonesia',
+    label: 'AWS',
     imgPath:
-      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80',
+      'https://pbs.twimg.com/profile_images/1473756532827246593/KRgw2UkV_400x400.jpg',
+  },
+  /* {
+    label: 'Cordova',
+    imgPath:
+      'https://cdn.icon-icons.com/icons2/2699/PNG/512/apache_cordova_logo_icon_170570.png',
   },
   {
-    label: 'Goč, Serbia',
+    label: 'Android Studio',
     imgPath:
-      'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
+      'https://cdn.icon-icons.com/icons2/1495/PNG/512/androidstudio_103298.png',
   },
   {
-    label: 'San Francisco – Oakland Bay Bridge, United States',
+    label: 'Xcode',
     imgPath:
-      'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
-  },
+      'https://cdn.icon-icons.com/icons2/3053/PNG/256/xcode_helper_macos_bigsur_icon_189446.png',
+  }, */
   {
-    label: 'Bird',
-    imgPath:
-      'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
-  },
-  {
-    label: 'Bali, Indonesia',
-    imgPath:
-      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80',
-  },
-  {
-    label: 'Goč, Serbia',
-    imgPath:
-      'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
+    label: 'socket io',
+    imgPath: 'https://socket.io/images/logo.svg',
   },
 ]
 
-function TechnologyList() {
+function TechnologyList({ start = 0 }) {
   const theme = useTheme()
   const [activeStep, setActiveStep] = React.useState(0)
   const maxSteps = images.length
@@ -94,99 +87,46 @@ function TechnologyList() {
 
   return (
     <Box sx={{ /* maxWidth: 400, */ flexGrow: 1 }}>
-      <Paper
-        square
-        elevation={0}
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          height: 50,
-          pl: 2,
-          bgcolor: 'background.default',
-        }}
-      >
-        <Typography>{images[activeStep].label}</Typography>
-      </Paper>
       <AutoPlaySwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={activeStep}
         onChangeIndex={handleStepChange}
         enableMouseEvents
       >
-        {images.map((step, index) => (
+        {images.slice(start).map((step, index) => (
           <div key={step.label} className="d-flex">
             {Math.abs(activeStep - index) <= 2 ? (
-              <>
-                <Box
-                  component="img"
-                  sx={{
-                    height: 255,
-                    display: 'block',
-                    maxWidth: '33.3333334%',
-                    overflow: 'hidden',
-                    width: '100%',
-                  }}
-                  src={step.imgPath}
-                  alt={step.label}
-                />
-                <Box
-                  component="img"
-                  sx={{
-                    height: 255,
-                    display: 'block',
-                    maxWidth: '33.3333334%',
-                    overflow: 'hidden',
-                    width: '100%',
-                  }}
-                  src={images[index + 1].imgPath}
-                  alt={images[index + 1].label}
-                />
-                <Box
-                  component="img"
-                  sx={{
-                    height: 255,
-                    display: 'block',
-                    maxWidth: '33.3333334%',
-                    overflow: 'hidden',
-                    width: '100%',
-                  }}
-                  src={images[index + 2].imgPath}
-                  alt={images[index + 2].label}
-                />
-              </>
+              <Box
+                component="img"
+                sx={{
+                  height: 128,
+                  display: 'block',
+                  maxWidth: 200,
+                  overflow: 'hidden',
+                  width: '100%',
+                }}
+                src={step.imgPath}
+                alt={step.label}
+              />
             ) : null}
           </div>
         ))}
       </AutoPlaySwipeableViews>
-      <MobileStepper
-        steps={maxSteps}
-        position="static"
-        activeStep={activeStep}
-        nextButton={
-          <Button
-            size="small"
-            onClick={handleNext}
-            disabled={activeStep === maxSteps - 1}
-          >
-            Next
-            {theme.direction === 'rtl' ? (
-              <KeyboardArrowLeft />
-            ) : (
-              <KeyboardArrowRight />
-            )}
-          </Button>
-        }
-        backButton={
-          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-            {theme.direction === 'rtl' ? (
-              <KeyboardArrowRight />
-            ) : (
-              <KeyboardArrowLeft />
-            )}
-            Back
-          </Button>
-        }
-      />
+      {/* <Paper
+        square
+        elevation={0}
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: 50,
+          width: '100%',
+          pl: 2,
+          bgcolor: 'background.default',
+        }}
+      >
+        <Typography>{images[activeStep].label}</Typography>
+      </Paper> */}
     </Box>
   )
 }

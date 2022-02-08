@@ -6,19 +6,27 @@ export default function Home() {
   return (
     <>
       <Grid container spacing={4}>
-        <TechnologyList />
-      </Grid>
-      <Grid container spacing={4}>
         <Grid item xs={4}>
-          <Item />
+          <TechnologyList start={0} />
         </Grid>
         <Grid item xs={4}>
-          <Item />
+          <TechnologyList start={1} />
         </Grid>
         <Grid item xs={4}>
-          <Item />
+          <TechnologyList start={2} />
         </Grid>
       </Grid>
+      {/* <Grid container spacing={4}>
+        <Grid item xs={4}>
+          <Item />
+        </Grid>
+        <Grid item xs={4}>
+          <Item />
+        </Grid>
+        <Grid item xs={4}>
+          <Item />
+        </Grid>
+      </Grid> */}
     </>
   )
 }
